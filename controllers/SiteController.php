@@ -16,10 +16,9 @@ class SiteController extends Controller
         return [
             'access' => [
                 'class' => AccessControl::className(),
-                'only' => ['pacijent'],
+                'only' => ['create', 'update', 'view'],
                 'rules' => [
                     [
-                        'actions' => ['pacijent'],
                         'allow' => true,
                         'roles' => ['@'],
                     ],

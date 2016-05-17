@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * KontrolaNalazTerapijaController implements the CRUD actions for KontrolaNalazTerapija model.
@@ -20,6 +21,18 @@ class KontrolaNalazTerapijaController extends Controller
     public function behaviors()
     {
         return [
+             // omogucuje nam unos za samo logirane korisnike
+            'access'=>[
+                'class'=> AccessControl::classname(),
+                'only'=>['create', 'update', 'view'],
+                'rules'=>[
+                    [
+                        'allow'=>TRUE,
+                        'roles'=> ['@']
+                    ],
+                    
+                ]
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [

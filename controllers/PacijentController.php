@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl; // moramo uključiti za unos za samo logirane korisnike
 
 /**
  * PacijentController implements the CRUD actions for Pacijent model.
@@ -20,6 +21,18 @@ class PacijentController extends Controller
     public function behaviors()
     {
         return [
+            // omogucuje nam unos za samo logirane korisnike
+            'access'=>[
+                'class'=> AccessControl::classname(),
+                'only'=>['create', 'update', 'view'],
+                'rules'=>[
+                    [
+                        'allow'=>TRUE,
+                        'roles'=> ['@']
+                    ],
+                    
+                ]
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -118,7 +131,7 @@ class PacijentController extends Controller
         if (($model = Pacijent::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException('The requested page does not exist.');
+            throw new NotFoundHttpException('Zahtjevana stranica ne postoji.');
         }
     }
 }
