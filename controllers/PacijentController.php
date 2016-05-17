@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Pacijent;
 use yii\data\ActiveDataProvider;
+use app\models\PacijentSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -51,8 +52,10 @@ class PacijentController extends Controller
         $dataProvider = new ActiveDataProvider([
             'query' => Pacijent::find(),
         ]);
-
+        $searchModel = new PacijentSearch();
+		       $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -132,6 +135,7 @@ class PacijentController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('Zahtjevana stranica ne postoji.');
+            
         }
     }
 }

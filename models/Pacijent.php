@@ -51,12 +51,12 @@ class Pacijent extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'S_Pacijenta' => Yii::t('app', 'S  Pacijenta'),
+            'S_Pacijenta' => Yii::t('app', 'Sifra  pacijenta'),
             'Ime' => Yii::t('app', 'Ime'),
             'Prezime' => Yii::t('app', 'Prezime'),
-            'OIB' => Yii::t('app', 'Oib'),
+            'OIB' => Yii::t('app', 'OIB'),
             'Spol' => Yii::t('app', 'Spol'),
-            'Datum_rodenja' => Yii::t('app', 'Datum Rodenja'),
+            'Datum_rodenja' => Yii::t('app', 'Datum rodenja'),
             'Adresa' => Yii::t('app', 'Adresa'),
             'Telefon' => Yii::t('app', 'Telefon'),
             'Status' => Yii::t('app', 'Status'),
